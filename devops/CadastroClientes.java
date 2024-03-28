@@ -14,33 +14,35 @@ public class CadastroClientes {
         this.clientes.add(cliente);
     }
 
-    public void viewClientes() {
-        for (Cliente cliente : this.clientes) {
-            System.out.println(cliente.toString());
+    public String viewClientes() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Cliente cliente : clientes) {
+            sb.append(cliente.toString()).append("\n");
+        }
+
+        return sb.toString();
+    }
+
+    public void attCliente(int index, Cliente cliente) {
+        if (index >= 0 && index < clientes.size()) {
+            clientes.set(index, cliente);
+            System.out.println("Cliente atualizado com sucesso.");
+        } else {
+            System.out.println("Índice inválido.");
         }
     }
 
-    public void attCliente(String nome, String novoEmail, String novoTelefone) {
-        for (Cliente cliente : this.clientes) {
-            if (cliente.getNome().equals(nome)) {
-                cliente.setEmail(novoEmail);
-                cliente.setTelefone(novoTelefone);
-                System.out.println("Cliente atualizado com sucesso!");
-                return;
-            }
+    public void excluirCliente(int index) {
+        if (index >= 0 && index < clientes.size()) {
+            clientes.remove(index);
+            System.out.println("Cliente excluído com sucesso.");
+        } else {
+            System.out.println("Índice inválido.");
         }
     }
 
-    public void excluirCliente(String nome) {
-        for (Cliente cliente : this.clientes) {
-            if (cliente.getNome().equals(nome)) {
-                this.clientes.remove(cliente);
-                System.out.println("Cliente excluido com sucesso!");
-                return;
-            } else {
-                System.out.println("Cliente não encontrado!");
-                return;
-            }
-        }
+    public List<Cliente> getClientes() {
+        return clientes;
     }
 }
